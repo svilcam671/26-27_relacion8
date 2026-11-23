@@ -13,14 +13,18 @@ if (MODO_TRABAJO=="produccion")
         error_reporting(E_ALL);  
 
 spl_autoload_register(function ($clase){
-    $ruta=RUTABASE."/aplicacion/clases/curso2026/";
+    $ruta=RUTABASE."/aplicacion/clases/";
     $fichero=$ruta."$clase.php";
-    
+    $fichero2=RUTABASE."/scripts/clases/$clase.php";
+
     if (file_exists($fichero))
         {
             require_once($fichero);
         }
-      else
+    else if (file_exists($fichero2)) {
+            require_once($fichero2);
+        }
+    else
         {
             throw new Exception("La clase $clase no se ha encontrado.");
         }

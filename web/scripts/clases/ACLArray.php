@@ -118,8 +118,12 @@
          * @param integer $codRole role a buscar
          * @return boolean Devuelve true si lo encuentra o false en caso contrario 
          */
-        function existeRole(int $codRole):bool
-        {
+        function existeRole(int $codRole):bool {
+
+            if (array_key_exists($codRole, $_roles)) {
+                return true;
+            }
+            return false;
             
         }
 
@@ -145,8 +149,7 @@
          * @param integer $numero Número de permiso
          * @return boolean True si encuentra el role y lo tiene. False en cualquier otro caso
          */
-        function getPermisoRole(int $codRole, int $numero): bool
-        {
+        function getPermisoRole(int $codRole, int $numero): bool{
               
         }
 
@@ -232,9 +235,13 @@
          * @param integer $codUsuario Código del usuario a verificar
          * @return boolean Devuelve si existe o no el usuario
          */
-        function existeCodUsuario(int $codUsuario):bool
-        {
+        function existeCodUsuario(int $codUsuario):bool{
             
+            if (array_key_exists($codUsuario)) {
+                return true;
+            }
+
+            return false;
         }
 
         /**
@@ -244,9 +251,12 @@
          * @return boolean Devuelve true si encuentra el usuario y 
          * false en caso contrario
          */
-        function existeUsuario(string $nick):bool
-        {
+        function existeUsuario(string $nick):bool{
                
+            if (getCodUsuario($nick)) {
+                return true;
+            }
+            return false;
         }
 
         /**
