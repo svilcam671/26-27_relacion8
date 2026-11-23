@@ -29,3 +29,11 @@ spl_autoload_register(function ($clase){
 include(RUTABASE."/aplicacion/plantilla/plantilla.php");
 
 //creo todos los objetos que necesita mi aplicación
+
+const COLORESFONDO = [
+    "blanco" => "white",
+];
+
+const COLORESTEXTO = [
+    "negro" => "black",
+];
