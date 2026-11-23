@@ -42,6 +42,8 @@ class Acceso {
      {
          $_SESSION["acceso"]["validado"]=false;
      }
+
+     return true;
     }
     
     /**
@@ -118,6 +120,9 @@ class Acceso {
      * @return boolean Devuelve true si hay usuario registrado. False en caso contrario
      */
     public function hayUsuario():bool {
+
+        return $this->_validado;
+
      }
     
     
@@ -129,6 +134,18 @@ class Acceso {
      */
     public function puedePermiso(int $numero):bool {
        
+        if (!$this->hayUsuario()) {
+            return false;
+        }
+
+        if (!array_key_exists($numero, $this->_permisos)) {
+            return false;
+        }
+        
+        return $this->_permisos[$numero];
+        
+
+
     }
     
     
@@ -144,6 +161,11 @@ class Acceso {
     public function getNick():string|false 
     { 
        
+        if (!$this->hayUsuario()) {
+            return false;
+        }
+
+        return $this->_nick;
     }
   
     /**
@@ -159,4 +181,44 @@ class Acceso {
         return $this->_nombre; 
     }    
     
+    /**
+     * Metodo magico get que es llamado de forma automatica cuando se quiere obtener informacion sobre una variable, exista o no, del objeto. 
+     * La redefinimos para que su uso quede deshabilitado devolviendo un error.
+     * @param string $name
+     * @return mixed
+     */
+    public function __get(string $name):mixed {
+        throw new Exception("No existe la propiedad $name");
+    }
+
+    /**
+     * Metodo magico set que es llamado de forma automatica cuando se quiere asignar valor a una variable de la clase exista o no.
+     * La redefinimos para que su uso quede deshabilitado devolviendo un error.
+     * @param string $name
+     * @param mixed $value
+     * @return void
+     */
+    public function __set(string $name, mixed $value):void {
+        throw new Exception("No existe la propiedad $name por lo que no se puede asignar el valor");
+    }
+
+    /**
+     * Metodo isset que comprueba si existe una variable en el objeto o no. Devolvemos false para deshabilitarla.
+     *
+     * @param string $name
+     * @return boolean
+     */
+    public function __isset(string $name):bool {
+        return false;
+    }
+
+    /**
+     * Metodo unset magico que quita el valor de una variable. Devolvemos un mensaje de error para deshabilitarla.
+     *
+     * @param string $name
+     * @return void
+     */
+    public function __unset(string $name):void {
+        throw new Exception("No existe la propiedad $name");
+    }
 }

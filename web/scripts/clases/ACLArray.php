@@ -41,7 +41,7 @@
                                       $this->getCodRole("normales"));
             $this->anadirUsuario("Es usuario profesor","profesor","profe",
                                       $this->getCodRole("administradores"));
-            $this->anadirUsuario("Vicente Tejero","vicente","profesor",
+            $this->anadirUsuario("Sergio Vilchez","sergio","sergiovc",
                                       $this->getCodRole("administradores"));
 
         }
@@ -120,7 +120,7 @@
          */
         function existeRole(int $codRole):bool {
 
-            if (array_key_exists($codRole, $_roles)) {
+            if (array_key_exists($codRole, $this->_roles)) {
                 return true;
             }
             return false;
@@ -150,7 +150,18 @@
          * @return boolean True si encuentra el role y lo tiene. False en cualquier otro caso
          */
         function getPermisoRole(int $codRole, int $numero): bool{
-              
+            
+            if (!array_key_exists($codRole, $this->_roles)) {
+                return false;
+            }
+
+            $permisos = $this->getPermisosRole($codRole);
+
+            if (!array_key_exists($numero, $permisos)) {
+                return false;
+            }
+
+            return $permisos[$numero];
         }
 
         /**
@@ -178,7 +189,7 @@
 
             //la contraseña la guardo encriptada
 			//establecer el método
-            $contrasena= método encriptado;
+            $contrasena=password_hash($contrasena, PASSWORD_BCRYPT);
 
             //busco cual es el ultimo codigo
             $cont=0;
@@ -237,7 +248,7 @@
          */
         function existeCodUsuario(int $codUsuario):bool{
             
-            if (array_key_exists($codUsuario)) {
+            if (array_key_exists($codUsuario, $this->_usuarios)) {
                 return true;
             }
 
@@ -253,7 +264,7 @@
          */
         function existeUsuario(string $nick):bool{
                
-            if (getCodUsuario($nick)) {
+            if ($this->getCodUsuario($nick) !== false) {
                 return true;
             }
             return false;
@@ -280,9 +291,9 @@
             $codigo=$this->getCodUsuario($nick);
             
 			//establecer el metodo de encriptado
-            $contrasena= metodo de encriptado;
+            //$contrasena= metodo de encriptado;
 
-            if ($this->_usuarios[$codigo]["contrasenia"]!=$contrasena)
+            if (!password_verify($contrasena,$this->_usuarios[$codigo]["contrasenia"]))
                  return false;
                 
             // es valido
@@ -300,6 +311,17 @@
         function getPermiso(int $codUsuario, int $numero):bool
         {
 
+            if (!array_key_exists($codUsuario, $this->_usuarios)) {
+                return false;
+            }
+            
+            $role = $this->getUsuarioRole($codUsuario);
+            if (!$this->getPermisoRole($role, $numero)) {
+                return false;
+            }
+
+            return true;
+
         }
 
         /**
@@ -312,6 +334,14 @@
         function getPermisos(int $codUsuario):array|false
         {
 
+            if (!array_key_exists($codUsuario, $this->_usuarios)) {
+                return false;
+            }
+            else {
+                $role = $this->getUsuarioRole($codUsuario);
+
+                return $this->getPermisosRole($role);
+            }
 
         }
 
@@ -339,7 +369,10 @@
          */
         function getBorrado(int $codUsuario):bool
         {
-
+            if (!$this->existeCodUsuario($codUsuario))
+                 return false;
+    
+            return $this->_usuarios[$codUsuario]["borrado"];
 
         }
 
@@ -385,7 +418,12 @@
          */
         function setContrasenia(int $codUsuario, string $contrasenia):bool
         {
+            if (!$this->existeCodUsuario($codUsuario)) {
+                return false;
+            }
 
+            $this->_usuarios[$codUsuario]["contrasenia"]=password_hash($contrasenia, PASSWORD_BCRYPT);
+            return true;
 
         }
 
@@ -420,6 +458,13 @@
         function setUsuarioRole(int $codUsuario, int $role):bool
         {
  
+            if (array_key_exists($codUsuario, $this->_usuarios) && array_key_exists($role, $this->_roles)) {
+
+                $this->_usuarios[$codUsuario]["cod_role"] = $role;
+                return true;
+            }
+
+            return false;
 
         }
 
@@ -431,7 +476,12 @@
          */
         function dameUsuarios():array
         {
+            $usuarios=[];
 
+            foreach($this->_usuarios as $clave=>$usuario)
+                $usuarios[$clave]=$usuario["nick"];
+
+            return $usuarios;
         }
 
         /**
@@ -449,5 +499,46 @@
 
             return $roles;
         }
+
+        /**
+     * Metodo magico get que es llamado de forma automatica cuando se quiere obtener informacion sobre una variable, exista o no, del objeto. 
+     * La redefinimos para que su uso quede deshabilitado devolviendo un error.
+     * @param string $name
+     * @return mixed
+     */
+    public function __get(string $name):mixed {
+        throw new Exception("No existe la propiedad $name");
+    }
+
+    /**
+     * Metodo magico set que es llamado de forma automatica cuando se quiere asignar valor a una variable de la clase exista o no.
+     * La redefinimos para que su uso quede deshabilitado devolviendo un error.
+     * @param string $name
+     * @param mixed $value
+     * @return void
+     */
+    public function __set(string $name, mixed $value):void {
+        throw new Exception("No existe la propiedad $name por lo que no se puede asignar el valor");
+    }
+
+    /**
+     * Metodo isset que comprueba si existe una variable en el objeto o no. Devolvemos false para deshabilitarla.
+     *
+     * @param string $name
+     * @return boolean
+     */
+    public function __isset(string $name):bool {
+        return false;
+    }
+
+    /**
+     * Metodo unset magico que quita el valor de una variable. Devolvemos un mensaje de error para deshabilitarla.
+     *
+     * @param string $name
+     * @return void
+     */
+    public function __unset(string $name):void {
+        throw new Exception("No existe la propiedad $name");
+    }
 
     }
