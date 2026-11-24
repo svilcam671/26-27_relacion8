@@ -34,12 +34,22 @@ include(RUTABASE."/aplicacion/plantilla/plantilla.php");
 
 //creo todos los objetos que necesita mi aplicación
 session_start();
+$acl = new ACLArray();
+$acceso = new Acceso();
 
 
 const COLORESFONDO = [
     "blanco" => "white",
+    "carmesi" => "crimson",
+    "azul" => "blue",
+    "verde" => "green",
+    "gris" => "gray",
 ];
 
 const COLORESTEXTO = [
     "negro" => "black",
+    "azul oscuro" => "darkblue",
+    "blanco" => "white",
+    "marron" => "brown",
+    "naranja" => "orange"
 ];
