@@ -500,7 +500,7 @@
             return $roles;
         }
 
-        /**
+    /**
      * Metodo magico get que es llamado de forma automatica cuando se quiere obtener informacion sobre una variable, exista o no, del objeto. 
      * La redefinimos para que su uso quede deshabilitado devolviendo un error.
      * @param string $name
