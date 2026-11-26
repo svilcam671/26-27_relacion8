@@ -58,19 +58,51 @@ function inicioCuerpo(string $cabecera, array $ubicacion = [])
 
     <body>
         <div id="documento">
-            <a href="../../index.php"><img src="../../imagenes/inicio.png" alt="Imagen de inicio" id="imgInicio"></a>
+            <a href="/index.php"><img src="/imagenes/inicio.png" alt="Imagen de inicio" id="imgInicio"></a>
             <header>
                 <h1 id="titulo"><?php echo $cabecera; ?></h1>
             </header>
 
             <div id="barraLogin">
+                <?php 
+                    if ($acceso->hayUsuario()) {
+                        ?> 
+                        
+                        <p>Bienvenido, <?php echo $acceso->getNombre() ?> <a href="/aplicacion/acceso/loggout.php">Cerrar sesión</a></p>
+                        
+                        <?php
+                    }
+                    else {
+                        ?> 
+                            <a href="/aplicacion/acceso/login.php">Iniciar sesión</a>
+                        <?php
+                    }
                 
+                ?>
             </div>
             <div id="barraMenu">
                 <ul>
                     <li><a href="/index.php">Inicio</a></li>
-                    <li><a href="/aplicacion/personalizar/index.php">Index R8</a></li>
-                    <li><a href="/aplicacion/personalizar/personalizar.php">Personalizar</a></li>
+
+                    <?php 
+                        if ($acceso->hayUsuario()) {
+
+                            ?> 
+                                <li><a href="/aplicacion/personalizar/index.php">Index R8</a></li>
+                                <li><a href="/aplicacion/texto/verTextos.php">Textos</a></li>
+                            
+                            <?php
+
+                            if ($acceso->puedePermiso(1)) {
+
+                                ?> 
+                                    <li><a href="/aplicacion/personalizar/personalizar.php">Personalizar</a></li>
+                                <?php
+                            }
+                        }
+                    
+                    ?>
+                    
                     
                 </ul>
 

@@ -15,6 +15,16 @@ $barra=[
         ]
 ];
 
+if (!$acceso->hayUsuario()) {
+    header("Location: /aplicacion/acceso/login.php");
+    exit;
+}
+
+if (!$acceso->puedePermiso(1)) {
+    paginaError("Acceso no permitido");
+    exit;
+}
+
 //$usuario=getenv("MYSQL_USER");
 
 $fondo = COLORESFONDO["blanco"];

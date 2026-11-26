@@ -20,10 +20,10 @@ $barra=[
 //$usuario=getenv("MYSQL_USER");
 
 //dibuja la plantilla de la vista
-inicioCabecera("Sesiones");
+inicioCabecera("Relacion 8 Sesiones");
 cabecera();
 finCabecera();
-inicioCuerpo("Sesiones", $barra );
+inicioCuerpo("Relacion 8 Sesiones", $barra );
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
