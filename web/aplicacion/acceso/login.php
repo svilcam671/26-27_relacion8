@@ -16,23 +16,38 @@ $barra=[
 
 //$usuario=getenv("MYSQL_USER");
 
+// variable para guardar el error en caso de fallo al iniciar sesion
 $error="";
+
+// variable para guardar el usuario que llega del formulario
 $usuario = "";
 
+// compruebo que llega la peticion del formulario de inicio de sesion con los datos
 if (isset($_POST["login"])) {
 
+    // recupero el usuario del formulario y quito los espacios en el nombre
     $usuario = isset($_POST["usuario"])?trim($_POST["usuario"]):"";
+
+    // recupero la contraseña del formulario y quito los espacios
     $contrasena = isset($_POST["contrasena"])?trim($_POST["contrasena"]):"";
+
+    // apartir del nombre de usuario saco el codigo de usuario 
     $codUsuario = $acl->getCodUsuario($usuario);
 
+    // si el usuario existe y la contraseña es correcta y si el usuario no esta borrado
     if ($acl->esValido($usuario, $contrasena) && !$acl->getBorrado($codUsuario)) {
 
+        // registro el usuario en la sesion con el usuario (nick), el nombre del usuario guardado y los permisos de ese usuario
         $acceso->registrarUsuario($usuario, $acl->getNombre($codUsuario), $acl->getPermisos($codUsuario));
 
-        header("Location: $paginaActual");
+        // redirecciono a la ultima direccion visitada antes de ir al formulario de inicio de sesion
+        $dir = $_SESSION["paginaActual"];
+        header("Location: $dir");
         exit;
     }
     else {
+
+        // si no guardo un error 
         $error="* Usuario o contraseña no validos";
     }
 
@@ -67,8 +82,10 @@ function cuerpo(string $usuario, string $error) {
         <label for="contrasena">Contraseña</label>
         <input type="password" name="contrasena" id="contrasena">
         <?php  
+
+            // si hay un error guardado lo muestro 
             if ($error !== "") {
-                ?> <small class="error"> <?php echo $error ?> </small> <?php
+                ?><br> <small class="error"> <?php echo $error ?> </small> <?php
             }
         ?>
         <br><br>

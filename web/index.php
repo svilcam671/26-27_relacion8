@@ -19,6 +19,8 @@ $barra=[
 
 //$usuario=getenv("MYSQL_USER");
 
+$_SESSION["paginaActual"] = "/index.php";
+
 //dibuja la plantilla de la vista
 inicioCabecera("Relacion 8 Sesiones");
 cabecera();

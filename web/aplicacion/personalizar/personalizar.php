@@ -15,7 +15,7 @@ $barra=[
         ]
 ];
 
-$paginaActual = "/aplicacion/personalizar/personalizar.php";
+$_SESSION["paginaActual"] = "/aplicacion/personalizar/personalizar.php";
 
 if (!$acceso->hayUsuario()) {
     header("Location: /aplicacion/acceso/login.php");

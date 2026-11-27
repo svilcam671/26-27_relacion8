@@ -36,8 +36,6 @@ include(RUTABASE."/aplicacion/plantilla/plantilla.php");
 session_start();
 $acl = new ACLArray();
 $acceso = new Acceso();
-$paginaActual = "/index.php";
-
 
 const COLORESFONDO = [
     "blanco" => "white",
