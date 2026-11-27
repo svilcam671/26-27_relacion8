@@ -15,6 +15,8 @@ $barra=[
         ]
 ];
 
+$paginaActual = "/aplicacion/personalizar/index.php";
+
 if (!$acceso->hayUsuario()) {
     header("Location: /aplicacion/acceso/login.php");
     exit;

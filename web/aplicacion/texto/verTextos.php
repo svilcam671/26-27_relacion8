@@ -14,6 +14,8 @@ $barra=[
         ]
 ];
 
+$paginaActual = "/aplicacion/texto/verTextos.php";
+
 if (!$acceso->hayUsuario()) {
     header("Location: /aplicacion/acceso/login.php");
     exit;

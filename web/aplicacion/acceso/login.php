@@ -29,7 +29,7 @@ if (isset($_POST["login"])) {
 
         $acceso->registrarUsuario($usuario, $acl->getNombre($codUsuario), $acl->getPermisos($codUsuario));
 
-        header("Location: /index.php");
+        header("Location: $paginaActual");
         exit;
     }
     else {

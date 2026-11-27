@@ -3,5 +3,5 @@
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 
 $acceso->quitarRegistroUsuario();
-header("Location: /index.php");
+header("Location: $paginaActual");
 exit;
