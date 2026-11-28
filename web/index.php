@@ -6,7 +6,7 @@ $barra=[
     [
         "TEXTO"=> "Inicio",
         "ENLACE"=> "/index.php",
-        "ADICIONAL" => ">>"
+        "ADICIONAL" => " >> "
         ],
         /*[
         "TEXTO"=> "otro",
@@ -19,11 +19,13 @@ $barra=[
 
 //$usuario=getenv("MYSQL_USER");
 
+$_SESSION["paginaActual"] = "/index.php";
+
 //dibuja la plantilla de la vista
-inicioCabecera("Tienda Sergio");
+inicioCabecera("Relacion 8 Sesiones");
 cabecera();
 finCabecera();
-inicioCuerpo("Tienda", $barra );
+inicioCuerpo("Relacion 8 Sesiones", $barra );
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
