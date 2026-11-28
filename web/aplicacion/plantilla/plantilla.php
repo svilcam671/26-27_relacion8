@@ -97,7 +97,7 @@ function inicioCuerpo(string $cabecera, array $ubicacion = [])
                             <?php
 
                             // si ademas el usuario tiene permisos para ver la pagina de personalizar se muestra el enlace a la pagina de personalizar los colores
-                            if ($acceso->puedePermiso(1)) {
+                            if ($acceso->puedePermiso(2)) {
 
                                 ?> 
                                     <li><a href="/aplicacion/personalizar/personalizar.php">Personalizar</a></li>

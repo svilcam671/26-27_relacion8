@@ -40,8 +40,12 @@ if (isset($_POST["login"])) {
         // registro el usuario en la sesion con el usuario (nick), el nombre del usuario guardado y los permisos de ese usuario
         $acceso->registrarUsuario($usuario, $acl->getNombre($codUsuario), $acl->getPermisos($codUsuario));
 
-        // redirecciono a la ultima direccion visitada antes de ir al formulario de inicio de sesion
-        $dir = $_SESSION["paginaActual"];
+        // redirecciono a la ultima direccion visitada antes de ir al formulario de inicio de sesion o al inicio en caso de no haberla
+        $dir = "/index.php";
+        if (isset($_SESSION["paginaActual"])) {
+            $dir = $_SESSION["paginaActual"];
+        }
+
         header("Location: $dir");
         exit;
     }

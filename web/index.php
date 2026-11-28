@@ -6,7 +6,7 @@ $barra=[
     [
         "TEXTO"=> "Inicio",
         "ENLACE"=> "/index.php",
-        "ADICIONAL" => ">>"
+        "ADICIONAL" => " >> "
         ],
         /*[
         "TEXTO"=> "otro",

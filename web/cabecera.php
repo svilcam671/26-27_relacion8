@@ -46,18 +46,22 @@ $acceso = new Acceso();
 
 // array asociativo con los colores de fondo
 const COLORESFONDO = [
-    "blanco" => "white",
-    "carmesi" => "crimson",
-    "azul" => "blue",
-    "verde" => "green",
-    "gris" => "gray",
+    "blanco" => "#ffffff",
+    "noche" => "#1e1e2e",
+    "pizarra" => "#2f3e46",
+    "bosque" => "#1b4332",
+    "vino" => "#4a1c2c",
+    "arena" => "#f4ecd8",
+    "cielo" => "#dbeafe",
 ];
 
 // array asociativo con los colores de texto
 const COLORESTEXTO = [
-    "negro" => "black",
-    "azul oscuro" => "darkblue",
-    "blanco" => "white",
-    "marron" => "brown",
-    "naranja" => "orange"
+    "negro" => "#212529",
+    "blanco" => "#f8f9fa",
+    "crema" => "#fdf0d5",
+    "dorado" => "#ffd166",
+    "menta" => "#95d5b2",
+    "coral" => "#ff8a80",
+    "azul" => "#1d3557",
 ];

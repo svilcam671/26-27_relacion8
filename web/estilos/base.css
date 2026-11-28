@@ -1,41 +1,71 @@
-@charset "UTF8";
+@charset "UTF-8";
 
 body {
-    background-color: cyan;
+    background-color: #dde3e8;
     font-size: 16px;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px 0;
 }
 
 #documento{
     margin: 0 auto;
-    background-color: #8ee9bb;
-    width: 1000px;
-}
-#cabecera{
-    background-color: #14e737;
-    padding: 5px;
-}
-#cabecera #logo{
-    width: 75px;
-    height: 50px;
+    background-color: #ffffff;
+    max-width: 1000px;
+    padding: 0 0 15px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
 }
 
-#cabecera #titulo{
-    font-size: 1.3em;
-    font-style: italic;
+/* Cabecera (antes #cabecera; en la plantilla es <header>) */
+header{
+    background-color: #264653;
+    color: white;
+    padding: 5px 20px 5px 85px;
+}
+
+#titulo{
+    font-size: 1.6em;
+    margin: 10px 0;
+}
+
+/* Imagen de inicio colocada dentro de la franja de la cabecera */
+#imgInicio {
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    width: 45px;
+    background-color: white;
+    padding: 3px;
+    border-radius: 4px;
+}
+
+/* Barra de login */
+#barraLogin {
+    text-align: right;
+    font-size: 14px;
+    padding: 5px 20px;
+}
+
+#barraLogin a {
+    color: #2a9d8f;
+    font-weight: bold;
 }
 
 /*Estilos barra de ubicacion*/
 #barraUbicacion {
     background-color: #f8f9fa;
     padding: 10px 15px;
+    margin: 0 20px 15px 20px;
     border-radius: 4px;
-    font-family: Arial, sans-serif;
     font-size: 14px;
     border: 1px solid #dee2e6;
+    color: #333;
 }
 
 #barraUbicacion a {
-    color: #0056b3;
+    color: #2a9d8f;
     text-decoration: none;
 }
 
@@ -48,7 +78,7 @@ body {
     background-color: #f1f3f5;
     padding: 8px 12px;
     border-radius: 4px;
-    margin-bottom: 15px;
+    margin: 0 20px 15px 20px;
 }
 
 #barraMenu ul {
@@ -71,42 +101,64 @@ body {
     padding: 6px 12px;
     text-decoration: none;
     border-radius: 3px;
-    font-family: Arial, sans-serif;
     font-size: 14px;
 }
 
 #barraMenu a:hover {
-    background-color: #d6dbdf;
+    background-color: #2a9d8f;
+    color: white;
 }
 
-#imgInicio {
-    width: 15%;
+/* Contenido de cada página */
+#documento > div:not([id]) {
+    padding: 0 20px;
 }
 
-.boton{
-    background-color: blue;
-    color:white;
-    border:1px black solid;
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+    padding: 6px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 250px;
+}
+
+.boton,
+input[type="submit"] {
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 .boton a{
     text-decoration: none;
-    color:white;
+    color: white;
 }
 
 .boton a:visited{
     text-decoration: none;
-    color:white;
+    color: white;
 }
 
-.boton a:hover{
-    background-color:cyan;
-    color: black;
-}
-
-.boton:hover{
-    background-color:cyan;
-    color: black;
+.boton:hover,
+input[type="submit"]:hover {
+    background-color: #21867a;
 }
 
 .tabla{
@@ -117,45 +169,49 @@ body {
 }
 
 .tabla th{
-    background-color: teal;
-    color: blue;
-}
-.tabla tr.par{
-    background-color: black;
+    background-color: #264653;
     color: white;
-    
 }
 
-/**.tabla tr.impar{
-    
-}*/
+.tabla tr.par{
+    background-color: #f1f3f5;
+}
 
-#pie{
-    background-color: #81e714;
-    color: blue;
-    font-size: 1.5 em;
-    padding: 5px;
+/* Pie (antes #pie; en la plantilla es <footer>) */
+footer{
+    background-color: #264653;
+    color: white;
+    font-size: 0.9em;
+    padding: 10px;
+    margin: 20px 20px 0 20px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+footer hr {
+    display: none;
 }
 
 .for_texto{
-    border:blue thin solid;
+    border: 1px solid #ced4da;
     background-color: white;
     padding: 2px;
-    margin:2px;
+    margin: 2px;
     border-radius: 4px;
 }
+
 .error{
     background-color: white;
-    color:red;
-    border:thin solid red;
-    padding:5px;
+    color: #e63946;
+    border: thin solid #e63946;
+    border-radius: 4px;
+    padding: 3px 6px;
+    font-size: 14px;
 }
 
 table, table tr, table td, table th {
-
-    border: 1px solid black;
+    border: 1px solid #ced4da;
     border-collapse: collapse;
     padding: 10px;
     text-align: center;
 }
-
