@@ -293,6 +293,7 @@
 			//establecer el metodo de encriptado
             //$contrasena= metodo de encriptado;
 
+            // se comprueba con password verify, si vuelvo a encriptar la contraseña siempre va a dar false porque no coinciden
             if (!password_verify($contrasena,$this->_usuarios[$codigo]["contrasenia"]))
                  return false;
                 

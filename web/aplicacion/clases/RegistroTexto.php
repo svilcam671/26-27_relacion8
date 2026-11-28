@@ -1,5 +1,8 @@
 <?php 
 
+/**
+ * Clase para registrar un texto con su fecha y hora
+ */
 class RegistroTexto {
 
     // Propiedades privadas

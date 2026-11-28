@@ -65,6 +65,7 @@ function inicioCuerpo(string $cabecera, array $ubicacion = [])
 
             <div id="barraLogin">
                 <?php 
+                    // si hay un usuario conectado muestro el nombre del usuario y en enlace para poder desconectarse
                     if ($acceso->hayUsuario()) {
                         ?> 
                         
@@ -73,6 +74,7 @@ function inicioCuerpo(string $cabecera, array $ubicacion = [])
                         <?php
                     }
                     else {
+                        // si no muestro el enlace para el inicio de sesion
                         ?> 
                             <a href="/aplicacion/acceso/login.php">Iniciar sesión</a>
                         <?php
@@ -85,6 +87,7 @@ function inicioCuerpo(string $cabecera, array $ubicacion = [])
                     <li><a href="/index.php">Inicio</a></li>
 
                     <?php 
+                        // si hay un usuario conectado muestro los enlaces del menu para el index de la relacion 8 y para la pagina de registrar textos
                         if ($acceso->hayUsuario()) {
 
                             ?> 
@@ -93,6 +96,7 @@ function inicioCuerpo(string $cabecera, array $ubicacion = [])
                             
                             <?php
 
+                            // si ademas el usuario tiene permisos para ver la pagina de personalizar se muestra el enlace a la pagina de personalizar los colores
                             if ($acceso->puedePermiso(1)) {
 
                                 ?> 
